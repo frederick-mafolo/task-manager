@@ -16,6 +16,11 @@ mat-card {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.add-btn{
+  margin: $spacing;
+  color: azure !important;
+}
+
 .form-row {
   display: flex;
   justify-content: space-between;
