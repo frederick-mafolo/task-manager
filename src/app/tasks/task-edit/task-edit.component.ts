@@ -15,12 +15,13 @@ import { map } from 'rxjs/operators';
 })
 export class TaskEditComponent implements OnInit {
   
+  @Select(TaskState.getTasks)
   tasks$!: Observable<Task[]>;
   taskForm!: FormGroup;
   taskId: string='' ;
-  @Select(TaskState.getTasks)
+  today: Date= new Date();
  
-  today: Date = new Date();
+ 
 
   constructor(private readonly _fb: FormBuilder, private readonly _store: Store, private readonly _route: ActivatedRoute, private readonly _router: Router) { }
 
