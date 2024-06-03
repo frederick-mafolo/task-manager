@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="task-card">
   <mat-card-title>Add New Task</mat-card-title>
   <mat-card-content>
     <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
@@ -13,7 +13,7 @@
       <div class="form-row">
         <mat-form-field appearance="fill" style="flex: 1; margin-right: 8px;">
           <mat-label>Due Date</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="dueDate" required>
+          <input matInput [matDatepicker]="picker" formControlName="dueDate" [min]="today" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>

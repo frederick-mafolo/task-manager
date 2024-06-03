@@ -8,6 +8,18 @@ mat-card {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.task-card {
+  width: 60%;
+  margin: 16px auto; /* Center the card horizontally */
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+}
 
 :host {
   display: block;

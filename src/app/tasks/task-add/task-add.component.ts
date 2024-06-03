@@ -12,7 +12,8 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class TaskAddComponent implements OnInit {
   taskForm!: FormGroup;
-
+  today: Date = new Date();
+  
   constructor(private fb: FormBuilder, private store: Store, private router: Router) { }
 
   ngOnInit(): void {

@@ -18,6 +18,7 @@ export class TaskEditComponent implements OnInit {
   taskId: string='' ;
   @Select(TaskState.getTasks)
   tasks$!: Observable<Task[]>;
+  today: Date = new Date();
 
   constructor(private fb: FormBuilder, private store: Store, private route: ActivatedRoute, private router: Router) { }
 
