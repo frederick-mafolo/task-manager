@@ -20,7 +20,7 @@ export class TaskEditComponent implements OnInit {
   taskForm!: FormGroup;
   taskId: string='' ;
   today: Date= new Date();
- 
+  taskNotFound: boolean = false;
  
 
   constructor(private readonly _fb: FormBuilder, private readonly _store: Store, private readonly _route: ActivatedRoute, private readonly _router: Router) { }
@@ -40,14 +40,7 @@ export class TaskEditComponent implements OnInit {
       });
     } else {
       // Will handle when task not found
-    
-      this.taskForm = this._fb.group({
-        title: ['', Validators.required],
-        description: ['', Validators.required],
-        dueDate: ['', Validators.required],
-        priority: ['', Validators.required],
-        completed: [false]
-      });
+      this.taskNotFound = true;
     }
     });
   }
