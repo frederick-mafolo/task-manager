@@ -1,8 +1,9 @@
-.spacer {
-    flex: 1 1 auto;
-  }
-  
-  .container {
-    padding: 20px;
-  }
-  
+a{
+  text-decoration: none;
+  color: azure;
+}
+
+router-outlet {
+  display: block;
+  padding: 20px;
+}

@@ -1,34 +1,32 @@
-<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-    <mat-form-field>
-      <mat-label>Title</mat-label>
-      <input matInput formControlName="title">
-      <mat-error *ngIf="taskForm.controls['title'].invalid">Title is required</mat-error>
-    </mat-form-field>
-  
-    <mat-form-field>
-      <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description"></textarea>
-      <mat-error *ngIf="taskForm.controls['description'].invalid">Description is required</mat-error>
-    </mat-form-field>
-  
-    <mat-form-field>
-      <mat-label>Due Date</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="dueDate">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="taskForm.controls['dueDate'].invalid">Due Date is required</mat-error>
-    </mat-form-field>
-  
-    <mat-form-field>
-      <mat-label>Priority</mat-label>
-      <mat-select formControlName="priority">
-        <mat-option value="low">Low</mat-option>
-        <mat-option value="medium">Medium</mat-option>
-        <mat-option value="high">High</mat-option>
-      </mat-select>
-      <mat-error *ngIf="taskForm.controls['priority'].invalid">Priority is required</mat-error>
-    </mat-form-field>
-  
-    <button mat-raised-button color="primary" type="submit">Add Task</button>
-  </form>
-  
+<mat-card>
+  <mat-card-title>Add New Task</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+      <div class="form-row">
+        <mat-form-field appearance="fill" style="flex: 1; margin-right: 8px;">
+          <mat-label>Due Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dueDate" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="flex: 1; margin-left: 8px;">
+          <mat-label>Priority</mat-label>
+          <mat-select formControlName="priority" required>
+            <mat-option value="Low">Low</mat-option>
+            <mat-option value="Medium">Medium</mat-option>
+            <mat-option value="High">High</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid">Add Task</button>
+    </form>
+  </mat-card-content>
+</mat-card>

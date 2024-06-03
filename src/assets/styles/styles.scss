@@ -1,0 +1,21 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+@import 'variables'; 
+
+// Include global styles
+html, body { 
+  height: 100%; 
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: $background-color;
+}
+
+router-outlet {
+  display: block;
+  padding: 20px;
+}
+        

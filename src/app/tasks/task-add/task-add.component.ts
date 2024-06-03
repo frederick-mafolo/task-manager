@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-task-add',
   templateUrl: './task-add.component.html',
-  styleUrls: ['./task-add.component.css']
+  styleUrls: ['./task-add.component.scss']
 })
 export class TaskAddComponent implements OnInit {
   taskForm!: FormGroup;
@@ -20,7 +20,7 @@ export class TaskAddComponent implements OnInit {
       title: ['', Validators.required],
       description: ['', Validators.required],
       dueDate: ['', Validators.required],
-      priority: ['low', Validators.required]
+      priority: ['Low', Validators.required]
     });
   }
 

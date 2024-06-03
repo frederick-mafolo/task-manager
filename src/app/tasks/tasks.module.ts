@@ -10,6 +10,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatCardModule} from '@angular/material/card';
+import { MatSortModule } from '@angular/material/sort';
 
 import { TasksRoutingModule } from './tasks-routing.module';
 import { TaskListComponent } from './task-list/task-list.component';
@@ -30,7 +32,9 @@ import { TaskListComponent } from './task-list/task-list.component';
     MatSelectModule,
     MatCheckboxModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCardModule,
+    MatSortModule
   ]
 })
 export class TasksModule { }
