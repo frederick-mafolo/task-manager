@@ -9,6 +9,8 @@ import { DeleteTask, ToggleCompleteTask } from '../state/task.actions';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ViewChild } from '@angular/core';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-task-list',
@@ -18,7 +20,7 @@ import { ViewChild } from '@angular/core';
 export class TaskListComponent implements OnInit {
   @Select(TaskState.getTasks) tasks$!: Observable<Task[]>;
   @ViewChild(MatSort) sort!: MatSort;
-  
+
   dataSource: MatTableDataSource<Task>;
   displayedColumns: string[] = ['title', 'description', 'dueDate', 'priority', 'actions'];
 
@@ -28,7 +30,7 @@ export class TaskListComponent implements OnInit {
 
 
 
-  constructor(private readonly _store: Store, private readonly _router: Router) {
+  constructor(private readonly _store: Store, private readonly _router: Router, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<Task>([]);
   }
 
@@ -65,8 +67,15 @@ export class TaskListComponent implements OnInit {
   
 
   onDeleteTask(id: string): void {
-    this._store.dispatch(new DeleteTask(id));
+    const dialogRef = this.dialog.open(ConfirmDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this._store.dispatch(new DeleteTask(id));
+      }
+    });
   }
+
 
   onToggleCompleteTask(id: string): void {
     this._store.dispatch(new ToggleCompleteTask(id));

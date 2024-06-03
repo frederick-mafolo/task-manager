@@ -8,6 +8,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { TaskState } from './tasks/state/task.state';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,9 @@ import { TaskState } from './tasks/state/task.state';
     MatToolbarModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsModule.forRoot([TaskState]),
+    NgxsStoragePluginModule.forRoot({ 
+      key: 'tasks'  
+    }),
   ],
   providers: [
     provideAnimationsAsync()
