@@ -17,7 +17,8 @@ import { ViewChild } from '@angular/core';
 })
 export class TaskListComponent implements OnInit {
   @Select(TaskState.getTasks) tasks$!: Observable<Task[]>;
-
+  @ViewChild(MatSort) sort!: MatSort;
+  
   dataSource: MatTableDataSource<Task>;
   displayedColumns: string[] = ['title', 'description', 'dueDate', 'priority', 'actions'];
 
@@ -25,9 +26,9 @@ export class TaskListComponent implements OnInit {
   priorityFilter = '';
   sortOption = '';
 
-  @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private readonly store: Store, private readonly router: Router) {
+
+  constructor(private readonly _store: Store, private readonly _router: Router) {
     this.dataSource = new MatTableDataSource<Task>([]);
   }
 
@@ -56,7 +57,7 @@ export class TaskListComponent implements OnInit {
     if (this.sortOption === 'dueDate') {
       tasks.sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
     } else if (this.sortOption === 'priority') {
-      const priorityOrder = { 'High': 1, 'Medium': 2, 'Low': 3 };
+      const priorityOrder = { 'high': 1, 'medium': 2, 'low': 3 };
       tasks.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
     }
     this.dataSource.data = tasks;
@@ -64,14 +65,14 @@ export class TaskListComponent implements OnInit {
   
 
   onDeleteTask(id: string): void {
-    this.store.dispatch(new DeleteTask(id));
+    this._store.dispatch(new DeleteTask(id));
   }
 
   onToggleCompleteTask(id: string): void {
-    this.store.dispatch(new ToggleCompleteTask(id));
+    this._store.dispatch(new ToggleCompleteTask(id));
   }
 
   onEditTask(taskId: number): void {
-    this.router.navigate(['/tasks/edit', taskId]);
+    this._router.navigate(['/tasks/edit', taskId]);
   }
 }

@@ -14,21 +14,23 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./task-edit.component.scss']
 })
 export class TaskEditComponent implements OnInit {
+  
+  tasks$!: Observable<Task[]>;
   taskForm!: FormGroup;
   taskId: string='' ;
   @Select(TaskState.getTasks)
-  tasks$!: Observable<Task[]>;
+ 
   today: Date = new Date();
 
-  constructor(private readonly fb: FormBuilder, private readonly store: Store, private readonly route: ActivatedRoute, private readonly router: Router) { }
+  constructor(private readonly _fb: FormBuilder, private readonly _store: Store, private readonly _route: ActivatedRoute, private readonly _router: Router) { }
 
   ngOnInit(): void {
-    this.taskId = this.route.snapshot.paramMap.get('id') || "";
+    this.taskId = this._route.snapshot.paramMap.get('id') || "";
     this.tasks$.pipe(
       map(tasks => tasks.find(task => task.id === this.taskId))
     ).subscribe(task => {
       if (task) {
-      this.taskForm = this.fb.group({
+      this.taskForm = this._fb.group({
         title: [task.title, Validators.required],
         description: [task.description, Validators.required],
         dueDate: [task.dueDate, Validators.required],
@@ -38,7 +40,7 @@ export class TaskEditComponent implements OnInit {
     } else {
       // Will handle when task not found
     
-      this.taskForm = this.fb.group({
+      this.taskForm = this._fb.group({
         title: ['', Validators.required],
         description: ['', Validators.required],
         dueDate: ['', Validators.required],
@@ -55,8 +57,8 @@ export class TaskEditComponent implements OnInit {
         ...this.taskForm.value,
         id: this.taskId
       };
-      this.store.dispatch(new UpdateTask(updatedTask)).subscribe(() => {
-        this.router.navigate(['/tasks']);
+      this._store.dispatch(new UpdateTask(updatedTask)).subscribe(() => {
+        this._router.navigate(['/tasks']);
       });
     }
   }
