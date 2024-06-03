@@ -14,7 +14,7 @@ export class TaskAddComponent implements OnInit {
   taskForm!: FormGroup;
   today: Date = new Date();
   
-  constructor(private fb: FormBuilder, private store: Store, private router: Router) { }
+  constructor(private readonly fb: FormBuilder, private readonly store: Store, private readonly router: Router) { }
 
   ngOnInit(): void {
     this.taskForm = this.fb.group({

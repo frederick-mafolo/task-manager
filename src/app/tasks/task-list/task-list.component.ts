@@ -27,7 +27,7 @@ export class TaskListComponent implements OnInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private store: Store, private router: Router) {
+  constructor(private readonly store: Store, private readonly router: Router) {
     this.dataSource = new MatTableDataSource<Task>([]);
   }
 

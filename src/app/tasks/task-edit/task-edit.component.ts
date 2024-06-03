@@ -20,7 +20,7 @@ export class TaskEditComponent implements OnInit {
   tasks$!: Observable<Task[]>;
   today: Date = new Date();
 
-  constructor(private fb: FormBuilder, private store: Store, private route: ActivatedRoute, private router: Router) { }
+  constructor(private readonly fb: FormBuilder, private readonly store: Store, private readonly route: ActivatedRoute, private readonly router: Router) { }
 
   ngOnInit(): void {
     this.taskId = this.route.snapshot.paramMap.get('id') || "";
